@@ -34,8 +34,14 @@ public class Drive extends Command {
   // value). The X axis is scaled down so the rotation is more easily
   // controllable.
   @Override
-  public void execute() {
-    driveSubsystem.driveArcade(-controller.getLeftY() * DRIVE_SCALING, -controller.getRightX() * ROTATION_SCALING);
+  public void execute(){
+    double DRIVE_SCALE_USE = 0;
+    if (controller.getHID().getAButton()){
+      DRIVE_SCALE_USE = DRIVE_SCALING;
+    }else{
+      DRIVE_SCALE_USE = 1.0;
+    }
+    driveSubsystem.driveArcade(-controller.getLeftY() * DRIVE_SCALE_USE, -controller.getRightX() * ROTATION_SCALING);
   }
 
   // Called once the command ends or is interrupted.

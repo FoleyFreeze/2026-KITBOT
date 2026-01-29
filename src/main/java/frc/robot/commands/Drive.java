@@ -38,9 +38,11 @@ public class Drive extends Command {
     double DRIVE_SCALE_USE = 0;
     if (controller.getHID().getAButton()){
       DRIVE_SCALE_USE = 1.0;
+    }else if(controller.getHID().getBButton()){
+      DRIVE_SCALE_USE = .5;
     }else{
       DRIVE_SCALE_USE = DRIVE_SCALING;
-    }
+  }
     driveSubsystem.driveArcade(-controller.getLeftY() * DRIVE_SCALE_USE, -controller.getRightX() * ROTATION_SCALING);
   }
 
